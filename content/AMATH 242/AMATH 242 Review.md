@@ -1,26 +1,26 @@
 ### Errors and Error Propagation
-![[image-2 1.png|489x89]]
-![[image-3 1.png|649x112]]
+![[../Pasted Photos/image-2 1.png|489x89]]
+![[../Pasted Photos/image-3 1.png|649x112]]
 
 
 ---
 ### Convergence Theory
 
-![[image-4 1.png|600|581x94]]
+![[../Pasted Photos/image-4 1.png|600|581x94]]
 
 
-![[image-5 1.png|600|595x196]]
+![[../Pasted Photos/image-5 1.png|600|595x196]]
 
-![[image-6 1.png|588x136]]
+![[../Pasted Photos/image-6 1.png|588x136]]
 
-![[image-7 1.png|604x113]]
+![[../Pasted Photos/image-7 1.png|604x113]]
 
 ![[AMATH 242/Pasted Photos/image-8.png|607x70]]
 
 
 ---
 ### Gaussian Elimination
-![[image-1.png]]
+![[../Pasted Photos/image-1.png]]
 
 ### Numerical Linear Algebra
 ![[AMATH 242/Pasted Photos/image-10.png|600]]
@@ -58,24 +58,24 @@
 		6. **Write the Newton form**
 			- $H(x)=f[z0​]+f[z1​,z0​](x−z0​)+f[z2​,z1​,z0​](x−z0​)(x−z1​)+f[z3​,z2​,z1​,z0​](x−z0​)(x−z1​)(x−z2​)$
 	- Method 2:
-		  ![[image 2.png|512x134]]
+		  ![[../Pasted Photos/image 2.png|512x134]]
 - **Cubic Spline**:
 	- Definition:
-		1. Uses cubic polynomials between successive nodes 
-		2. Satisfies specific interpolation and smoothness conditions 
-	- **Boundary Conditions** 
-		1. Free Boundary (Natural Cubic Spline): 
+		1. Uses cubic polynomials between successive nodes
+		2. Satisfies specific interpolation and smoothness conditions
+	- **Boundary Conditions**
+		1. Free Boundary (Natural Cubic Spline):
 			- $S_1'(x0) = 0$
 			- $S_n'(xn) = 0$
-		2. Clamped Boundary: 
+		2. Clamped Boundary:
 			- Specifies first derivatives at endpoints
 			- Generally leads to more accurate approximation
 		3. Periodic Boundary:
 			- Requires $f0 = fn$
-			- First and second derivatives of first and last polynomials are equal 
-	- **Cubic Spline Construction** 
-		- Requires determining 4n constants 
-		- Polynomial form: $Sj(x) = aj + bj(x - xj) + cj(x - xj)² + dj(x - xj)³$
+			- First and second derivatives of first and last polynomials are equal
+	- **Cubic Spline Construction**
+		- Requires determining 4n constants
+		- Polynomial form:$Sj(x) = aj + bj(x - xj) + cj(x - xj)² + dj(x - xj)³$
 		- Uses complex system of equations to determine coefficients
 <div style="page-break-after: always;"></div>
 ### Numerical Integration
@@ -88,7 +88,7 @@
 		2. *Polynomial Interpolation*
 		3. *Lagrange Interpolating Polynomial*
 #### The Newton-Cotes Rules:
-- Uses equally spaced points in interval [a, b] 
+- Uses equally spaced points in interval [a, b]
 - Node spacing: h = (b-a)/n
 
 | **Rules**                | Conditions                                  | Formula                                            | **Truncation Error**                     | **Degree of Precision** |
@@ -135,10 +135,10 @@
 #### Real Fourier Series
 - Fourier analysis is a method of approximating **periodic functional** data using combinations of sine and cosine waves, converting time or spatial information into frequency information.
 - **Definition**: Process of representing periodic functional data as a combination of trigonometric functions
-- **Applications**: 
-	1. Identifying phone button sounds 
-	2. Storing images 
-	3. Optical information processing 
+- **Applications**:
+	1. Identifying phone button sounds
+	2. Storing images
+	3. Optical information processing
 	4. MP3 compres
 - ***Euler's Formula***: 
 	- $e^{i\theta}=\cos(\theta)+i\sin(\theta)$
@@ -170,14 +170,14 @@
 	
 	![[./Pasted Photos/image-1.png|325x135]]
 	
-	![[image-3 2.png|658x362]]
+	![[../Pasted Photos/image-3 2.png|658x362]]
 	
-	![[image-4 2.png|655x134]]
+	![[../Pasted Photos/image-4 2.png|655x134]]
 	
 	
 - ***Fundamental convergence theorem for Fourier series***: 
 
-	![[./Pasted Photos/image-4.png |800|432x119]]
+	![[../Pasted Photos/image-4.png |800|432x119]]
 	
 	![[./Pasted Photos/image-5.png|469x236]]
 #### Complex Fourier series:
@@ -189,7 +189,7 @@
 	3. $b_{0}=0,c_{0}=\frac{1}{2}a_{0}$
 	4. $a_{k}=2\mathrm{Re}(c_{k}),\:b_{k}=-2Im(c_{k})$
 	5. If f(t) is even, Im($c_{k}$) =0. f(t) odd, Re($c_{k}$)=0
-![[image-1 2.png]]
+![[../Pasted Photos/image-1 2.png]]
 - 
 
 #### Fast Fourier Transform
@@ -207,9 +207,9 @@ Fast Fourier Transform
 		F[odd] = (1/2) FastFT(h, N/2)
 	end
 ```
-![[image-5 2.png|700]]
+![[../Pasted Photos/image-5 2.png|700]]
 
-![[image-6 2.png| 700]]
+![[../Pasted Photos/image-6 2.png| 700]]
 
-![[image.png |600]]
+![[../Pasted Photos/image.png |600]]
 
