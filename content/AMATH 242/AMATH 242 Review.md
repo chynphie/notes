@@ -1,26 +1,26 @@
 ### Errors and Error Propagation
-![[../Pasted Photos/image-2 1.png|489x89]]
-![[../Pasted Photos/image-3 1.png|649x112]]
+![[AMATH 242/Pasted Photos/image-2 1.png|489x89]]
+![[AMATH 242/Pasted Photos/image-3 1.png|649x112]]
 
 
 ---
 ### Convergence Theory
 
-![[../Pasted Photos/image-4 1.png|600|581x94]]
+![[AMATH 242/Pasted Photos/image-4 1.png|600|581x94]]
 
 
-![[../Pasted Photos/image-5 1.png|600|595x196]]
+![[AMATH 242/Pasted Photos/image-5 1.png|600|595x196]]
 
-![[../Pasted Photos/image-6 1.png|588x136]]
+![[AMATH 242/Pasted Photos/image-6 1.png|588x136]]
 
-![[../Pasted Photos/image-7 1.png|604x113]]
+![[AMATH 242/Pasted Photos/image-7 1.png|604x113]]
 
 ![[AMATH 242/Pasted Photos/image-8.png|607x70]]
 
 
 ---
 ### Gaussian Elimination
-![[../Pasted Photos/image-1.png]]
+![[AMATH 242/Pasted Photos/image-1.png|359x149]]
 
 ### Numerical Linear Algebra
 ![[AMATH 242/Pasted Photos/image-10.png|600]]
@@ -57,8 +57,6 @@
 			- $f[z3​,z2​,z1​,z0​]=\frac{​f[z3​,z2​,z1​]−f[z2​,z1​,z0​]​}{z3​−z0}=\frac{f[z3​,z2​,z1​]−f[z2​,z1​,z0​]}{b−a}$
 		6. **Write the Newton form**
 			- $H(x)=f[z0​]+f[z1​,z0​](x−z0​)+f[z2​,z1​,z0​](x−z0​)(x−z1​)+f[z3​,z2​,z1​,z0​](x−z0​)(x−z1​)(x−z2​)$
-	- Method 2:
-		  ![[../Pasted Photos/image 2.png|512x134]]
 - **Cubic Spline**:
 	- Definition:
 		1. Uses cubic polynomials between successive nodes
@@ -78,12 +76,13 @@
 		- Polynomial form:$Sj(x) = aj + bj(x - xj) + cj(x - xj)² + dj(x - xj)³$
 		- Uses complex system of equations to determine coefficients
 <div style="page-break-after: always;"></div>
+
 ### Numerical Integration
 - **Numerical Quadrature**: Approximating definite integrals numerically, using weighted sum of integrand value. i.e. $I(f)=∫_{a}^{b}f(x)dx\approx Q_{n}(f)=\sum(w_{i}f(x_{i}))$
 	- Methods finding Nodes (xi) and weights (wi):
 		1. *Method of Undetermined Coefficients*
-			![[Pasted image 20250418094722.png| 436]]
-			![[Pasted image 20250418094629.png| 435]]
+			![[Pasted image 20250418094722.png|436|479x176]]
+			![[Pasted image 20250418094629.png|435|457x156]]
 	
 		2. *Polynomial Interpolation*
 		3. *Lagrange Interpolating Polynomial*
@@ -99,10 +98,12 @@
 
 
 - **Composite Mid-point Rule:** 
+	
 	![[Pasted image 20250418111636.png | 400]]
 	- $T(f)=h\sum_{i=1}^{n}f(x_{m_{j}}),\:m_{j}=a+\left( j-\frac{1}{2} \right)h$
 	- $E(f)=\frac{b-a}{h}h^{2}f''(c)$
 - **Composite Trapezoid Rule**: 
+	
 	![[Pasted image 20250418111838.png | 400]]
 	- $T(f)=\frac{h}{2}[ f(a)\:+\sum_{i=1}^{n-1}2f(x_{i})+f(b)], h=\frac{b-a}{n}$
 	- $|E(f)|\leq \frac{h^{2}}{12}(b-a)M,\:M=max|f''(x)|\:for\:a\leq x\leq b$
@@ -111,7 +112,6 @@
 	- Properties:
 		1. Subintervals are **even** as we integrate 2 subsections at a time
 		2. **Simpson’s 1/3 rule** is a special case of Newton–Cotes formulas and integrates up to degree 3 exactly
-			- 
 	- *Example*: Evaluate integral $∫_{0}^{1}\:\frac{1}{x+4}dx$ using the composite midpoint rule with n=6:
 	- $T(f)=\frac{h}3\left[ f(x_{0})+2\sum_{i=1}^{n/2-1} f(x_{2j})+4\sum_{i=i}^{n/2}f(x_{2i-1})+f(x_{n})\right]$
 	- $E(f)=-\frac{b-a}{180}h^{4}f^{(4)}(c)$
@@ -168,18 +168,18 @@
 	2. $f(x)=-f(-x)\implies \text{odd function}$
 - **Discrete Fourier Transform**:
 	
-	![[./Pasted Photos/image-1.png|325x135]]
+	![[AMATH 242/Pasted Photos/image-1.png|359x149]]
 	
-	![[../Pasted Photos/image-3 2.png|658x362]]
+	![[AMATH 242/Pasted Photos/image-3 2.png|658x362]]
 	
-	![[../Pasted Photos/image-4 2.png|655x134]]
+	![[AMATH 242/Pasted Photos/image-4 2.png|655x134]]
 	
 	
 - ***Fundamental convergence theorem for Fourier series***: 
 
-	![[../Pasted Photos/image-4.png |800|432x119]]
+	![[AMATH 242/Pasted Photos/image-4.png |800|432x119]]
 	
-	![[./Pasted Photos/image-5.png|469x236]]
+	![[AMATH 242/Pasted Photos/image-5.png|469x236]]
 #### Complex Fourier series:
 - $f(t)=\sum_{k=-\infty}^{\infty}c_{k}e^{ikt}dt$  with f(t) defined on $[-\pi,\pi]$ and
 - $c_{k}=\frac{1}{2\pi}∫_{-\pi}^{\pi}f(t)e^{-ikt}dt=\frac{1}{2}(a_{k}-ib_{k})$ 
@@ -189,7 +189,7 @@
 	3. $b_{0}=0,c_{0}=\frac{1}{2}a_{0}$
 	4. $a_{k}=2\mathrm{Re}(c_{k}),\:b_{k}=-2Im(c_{k})$
 	5. If f(t) is even, Im($c_{k}$) =0. f(t) odd, Re($c_{k}$)=0
-![[../Pasted Photos/image-1 2.png]]
+![[AMATH 242/Pasted Photos/image-1 2.png]]
 - 
 
 #### Fast Fourier Transform
@@ -207,9 +207,9 @@ Fast Fourier Transform
 		F[odd] = (1/2) FastFT(h, N/2)
 	end
 ```
-![[../Pasted Photos/image-5 2.png|700]]
+![[AMATH 242/Pasted Photos/image-5 2.png|700]]
 
-![[../Pasted Photos/image-6 2.png| 700]]
+![[AMATH 242/Pasted Photos/image-6 2.png| 700]]
 
-![[../Pasted Photos/image.png |600]]
+![[AMATH 242/Pasted Photos/image.png |600]]
 
