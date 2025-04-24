@@ -1,0 +1,268 @@
+## Algorithm Table
+
+| **NVM(Normal Variance Mixtures)**                                                                                                                                                                                                                                                                                                                                                                                                                     | **Composition Method**                                                                                                                                            |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Sample $Z_{1},\dots, Z_{d} \sim N(0,1)$ from $W$<br>2. Return $\mu + \sqrt{ W }AZ$                                                                                                                                                                                                                                                                                                                                                                 | 1. Sample $K$.<br>2. Sample $X\sim F_K$.<br>3. Return $X$.                                                                                                        |
+| **Multi Normal in T dist.**                                                                                                                                                                                                                                                                                                                                                                                                                           | **Copulas**                                                                                                                                                       |
+| 1. Sample $Z$<br>2. Sample $W$<br>3. Return $X = \mu + \sqrt{W} A Z$<br>                                                                                                                                                                                                                                                                                                                                                                              | 1. Find copula $C$ of $F$.<br>2. Sample $U = (U_1, \dots, U_d) \sim C$.<br>3. Return $X = (F_1^{-1}(U_1), \dots, F_d^{-1}(U_d))$.                                 |
+| **Sampling from minima/maxima**                                                                                                                                                                                                                                                                                                                                                                                                                       | **Multivariate Normal**                                                                                                                                           |
+| 1. sample $U\sim U(0,1)$<br>   - The inverse function for sampling from minima is: $F^{-1}(1-U^{1/n})$<br>   - The inverse function for sampling from maxima is: $F^{-1}(U^{1/n})$                                                                                                                                                                                                                                                                    | 1. Sample $X_j \sim F_j$ independently for $j=1,...,d$ (via $X_j = F_j^{-1}(U_j)$ for independent $U_1, ..., U_d \sim U(0,1)$)<br>2. Return $X = (X_1, ..., X_d)$ |
+| **Product Distribution**                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                                                                                   |
+| $F(x) = F_1(x) F_2(x)$  where  $F_1$  and  $F_2$  are CDFs -> Use max of two independent samples.<br><br>1. sample $U_1, U_2 \sim U(0,1)$<br>2. set $U_1 = F_1 ^{-1}(x)$ and $U_2 = F_2^{-1}(x)$<br>3. return $\text{max}\{U_1,U_2\}$<br><br>**not** valid pdf:<br>1. sample $U_1,...,U_k \sim U(0,1)$ and $V_1,...,V_k \sim U(0,1)$<br>2. set $Y_j= F_1^{-1}(x)$ and $W_j = F_2^{-1}(x)$ **and** $X_j = max\{Y_j, W_j\}$ <br>3. return $X_1,...,X_n$ |                                                                                                                                                                   |
+
+## Inversion Method
+- We use inversion method based on *uniform distribution* because
+		1. Naturally maps the uniform sample to the corresponding cdfs (since cdf has dist from 0-1)
+		2. After knowing the value of cdf, easily compute $X_{i}$ .
+## Table Look-up methods
+1. Determine the probability of event A,B,C,D out of the total of n (reduce to the lowest term if possible)
+2. Sampling $U \sim U(0,1)$
+3. Set $c(rep(A,n_{1}),rep(B,n_{2}),rep(C,n_{3}),rep(D,n_{4}))$ 
+4. return $\lceil nU \rceil$
+
+## Composition Method 
+- $F(x)=\sum_{k=1}^{\infty} p_k F_k(x)$  where $\sum_{k=1}^{\infty} p_k=1$ 
+-  **Proposition**：
+	- Let $K$ be a discrete random variable with pmf $p_k=P(K=k)$, $k\in\mathbb{N}$, and let $F_k$, $k\in\mathbb{N}$, be cdfs.  
+	- If $X|K=k\sim F_k$, $k\in\mathbb{N}$, then $X\sim F(x)=\sum_{k=1}^{\infty} p_k F_k(x)$.  
+	Proof：
+	We know that $P(X\leq x)=\sum_{k} P(X\leq x|K=k)P(K=k)$,  which simplifies to  $\sum_{k} F_k(x)p_k=F(x)$ .
+
+-  **Algorithm**
+	1. Sample $K$.
+	2. Sample $X\sim F_K$.
+	3. Return $X$.
+- Example: 
+	Given  $f(k)=\left(\frac{1}{2}\right)^{k+1}+\frac{2^{k-1}}{2 \cdot3^{k+1}}$,  this is a composition for a mixture of geometric distributions:  $=\frac{1}{2} \left(\frac{1}{1-\frac{1}{3}}\right)^{k-1}+\frac{1}{2} \left(\frac{1}{1-\frac{2}{3}}\right)^{k-1}$,  
+	
+	where  $\sim\text{Geo} \left(\frac{1}{3}\right)$  and  $\sim\text{Geo} \left(\frac{2}{3}\right)$.  
+	
+	For inverse transform sampling:  $F_1^{-1}(X)=\frac{\log(U)}{\log(1/3)}$,  $F_2^{-1}(X)=\frac{\log(U)}{\log(2/3)}$.  
+	1. Sample $V\sim U(0,1)$.  
+	2. Return  $X=\frac{\log(V)}{\log(1/3)}$ if $V\leq 1/2$, else $X=\frac{\log(V)}{\log(2/3)}$.  
+
+---
+## Multivariate Normal Distribution
+- Given a d-dimensional random vector $X = (X_1, ..., X_d)$ with joint cdf $F(x_1, ..., x_d) = P(X_1 \leq x_1, ..., X_d \leq x_d), x_1, ..., x_d \in \mathbb{R}$, we sample (multivariate) realizations of $F$.
+- Vectors $(X_1, ..., X_d) \in \mathbb{R}^d$ stored in an $(n, d)$ matrix, where the j-th row is a realization of $X_j$.
+### Sampling Random Vectors with Independent Components
+- Let $X = (X_1, ..., X_d)$ be a d-dim. r.v. with joint cdf $$F(X) = P(X \leq x) = P(X_1 \leq x_1, ..., X_d \leq x_d), X \in \mathbb{R}^d$$For $j = 1, ..., d$, the j-th marginal of $F$ is $F_j(x_j) = P(X_j \leq x_j) = F(\infty, ..., x_j, \infty, ...)$
+- Assume $F(X_1, ..., X_d) = \prod_{j=1}^{d} F_j(X_j)$, so that $X_1, ..., X_d$ are mutually independent.
+#### Algorithm:
+1. Sample $X_j \sim F_j$ independently for $j=1,...,d$ (via $X_j = F_j^{-1}(U_j)$ for independent $U_1, ..., U_d \sim U(0,1)$)
+2. Return $X = (X_1, ..., X_d)$
+
+ - Example
+	- If $Z_1, ..., Z_d \overset{iid}{\sim} N(0,1)$, then $Z = (Z_1, ..., Z_d)$ follows the standard normal distribution $Z \sim N(0, I_d)$.  Let  and  be positive definite. Then a lower-triangular matrix  such that  (computed via t(chol(Sigma))).
+	- Let $Z \sim N(0, I_d)$ and define $X \sim N(\mu, \Sigma)$ via:
+		- $X = \mu + AZ$, or explicitly,
+		- $X_1 = \mu_1 + a_{11}Z_1$
+		- $X_2 = \mu_2 + a_{21}Z_1 + a_{22}Z_2$
+		- $\vdots$
+		- $X_d = \mu_d + a_{d1}Z_1 + a_{d2}Z_2 + ... + a_{dd}Z_d$
+	- Algorithm:
+		1. Compute $A$ such that $AA^T = \Sigma$
+		2. Sample $Z_1, ..., Z_d \overset{iid}{\sim} N(0,1)$ (e.g., via $Z_j = \Phi^{-1}(U_j)$ for $U_1, ..., U_d \sim U(0,1)$)  
+		3. Return $X = \mu + AZ$
+	
+
+### Multivariate Normal and t-distribution
+- "Normal distribution" may fail to capture the likelihood of **large values**, so we use t-distribution.
+- $X \sim t_d(\nu, \mu; \Sigma)$, where $\nu$ is the **degrees of freedom**.
+- Stochastic representation:
+	- $X = \mu + \sqrt{W} A Z$, where $Z \sim N_d(0, I_d)$, We want $W \sim IG(\psi_1, \psi_2)$, since $X \sim \text{Gamma}(\alpha, \beta)$ and $\frac{1}{X} \sim IG(\alpha, \beta)$, $\Rightarrow$ Sample $W \sim \text{Gamma}(\nu/2, \nu/2)$.
+- #### Sample from t-distribution Algorithm
+	1. Sample $Z$
+	2. Sample $W$
+	3. Return $X = \mu + \sqrt{W} A Z$
+
+---
+## Normal Variance Mixtures
+Generates normal distribution by introducing randomness into its variance. The variance itself follows another distribution.
+
+Let $Z \sim \text{Normal}(0, I_d)$ independent of the scalar $W \sim F_W$ with $W \geq 0$, then $X$ is a normal variance mixture if its distribution:
+$$X = \mu + \sqrt{W} A Z$$
+- **Mean shift**: $\mu$
+- **Scale parameter**: $\sqrt{W} A$
+
+The scalar $W$ affects all components $X_1, \dots, X_d$, and conditional on $W$, $X | W \sim \text{Normal}(\mu, W\Sigma)$.
+
+- If $W \sim \text{IG}(\nu/2, \nu/2)$ for some $\nu > 0$, then $X \sim t_{\nu}(\mu, \Sigma)$, the multivariate $t$ distribution with $\nu$ degrees of freedom.
+- Use When:
+	- Generalizing normal distribution by allowing for skewness and heavy tails.
+	- Useful in finance.
+	- Describes real-world data better than normal distribution, sometimes underestimating extreme values.
+#### Algorithmn:
+1. Sample $Z_{1},\dots, Z_{d} \sim N(0,1)$ from $W$
+2. Return $\mu + \sqrt{ W }AZ$ 
+---
+## Rosenblatt Transform aka Conditional Distribution Method
+
+Key idea: Sampling each $W$ one after the other recursively, each time sample $X_{n+1} | X_n = x_n$.
+### Example in Dimension 2: Sample $(X_1, X_2) \sim F$
+1. Sample $U_1, U_2 \sim U(0,1)$.
+2. Set $Y_1 = F_1^{-1}(U_1)$, then $(Y_1 \sim F_1)$.
+3. Compute the distribution function of $X_2 | X_1 = y_1$, say  
+   $$F_{X_2 | X_1 = x_1} (x_2) = P(X_2 \leq x_2 | X_1 = x_1)$$
+4. Set $Y_2 = F_{X_2 | X_1 = y_1}^{-1}(U_2)$.
+5. Return $(Y_1, Y_2)$.
+
+---
+
+## Copulas
+- For any random vector $X = (X_1, \dots, X_d)$ with **continuous** margins, the probability-transformed vector $U = (F_1(X_1), \dots, F_d(X_d))$ is such that:
+	$U_j \sim U(0,1)$ for $j = 1, \dots, d$.
+- The joint distribution of $(U_1, \dots, U_d)$ determines the dependence among $(X_1, \dots, X_d)$.
+
+- A **copula** is a $d$-dimensional function with $U(0,1)$ marginal distributions (i.e., the joint CDF of $(U_1, \dots, U_d)$ where $U_j \sim U(0,1)$).
+- Example:  $$C(U_1, \dots, U_d) = \prod_{j=1}^{d} U_j$$is the **independence copula**.
+- #### Sklar’s Theorem
+	1. If $F$ is a CDF with continuous margins $F_1, \dots, F_d$, then there’s a unique copula $C$ such that:$$F(x) = C(F_1(X_1), \dots, F_d(X_d)), \quad x \in \mathbb{R}^d$$
+	2. The copula $C$ is given by: $$C(U) = F(F_1^{-1}(U_1), \dots, F_d^{-1}(U_d))$$for $U \in [0,1]^d$. Furthermore,$U = (F_1(X_1), \dots, F_d(X_d)) \sim C$ for $X \sim F$.
+	3. Conversely, if $U \sim C$ for a copula $C$ and $F_1, \dots, F_d$ are continuous CDFs, then $F$ defined above is a CDF with copula $C$ and margins $F_1, \dots, F_d$.  
+		Furthermore, $X = (F_1^{-1}(U_1), \dots, F_d^{-1}(U_d)) \sim F$ for $U = (U_1, \dots, U_d) \sim C$.
+	- *Proof*: 
+		- Let $X = (X_1, X_d) \sim F$. Let $U = (U_1, U_d)$ where $U_j = F_j(X_j)$. Then $U_j$ denotes the joint CDF of $U$, which is a copula. Then:
+			- $P(U_1 \leq u_1, \dots, U_d \leq u_d) = P(F_1(X_1) \leq u_1, \dots, F_d(X_d) \leq u_d)$
+			- $= P(X_1 \leq F_1^{-1}(u_1), \dots, X_d \leq F_d^{-1}(u_d))$
+			- $= F(F_1^{-1}(u_1), \dots, F_d^{-1}(u_d))$
+		- Since the joint CDF of $(F_1(X_1), \dots, F_d(X_d)) = C$.
+-  **Algorithm**
+	1. Find copula $C$ of $F$.
+	2. Sample $U = (U_1, \dots, U_d) \sim C$.
+	3. Return $X = (F_1^{-1}(U_1), \dots, F_d^{-1}(U_d))$.
+
+-  **Steps determine a Copula**
+	1. calculate the marginal cdf ($\sim U(0,1)$ and continues? )
+	2. calculate the $F_{i}^{-1}$ write in $U_{i}$
+	3. Substitute in $F_{i}^{-1}$ in to orginal F to get $C(u)=F(F_{i}^{-1}(x_{i}))$
+
+-  ***Special Copulas***:
+	- **Independent copula: $C(u)=\prod_{j=1}^{d}u_{i}, u \in[0,1]^{d}$**
+	- **Comonotonicity Copula  *(perfect positive dependence)***  
+		- Definition:  
+			- $M(u) = \min \{u_1, \dots, u_d\}, \quad u \in [0,1]^d$
+	- **Counter monotonicity Copula *(perfect negative dependence)***  
+		- Definition:  
+			- $W(u) = \max \{u_1 + u_2 - 1, 0\}, \quad u \in [0,1]^2$
+		- Properties:  
+			- $U = (U, 1 - U) \sim W$ for $U \sim U(0,1)$
+	- **Probability Expression:**
+		- $P(U \leq u_1, V \leq u_2) = P(U \leq \min\{u_1, u_2\})= \min \{u_1, u_2\}, \quad u_i \in [0,1]$
+	![[Pasted image 20250313210157.png]]
+- *Sampling from implicit Copulas*:
+	a)Sample $X = (X_{1}, . . . ,X_{d}) ∼ N_d (0, P).$
+	b)
+---
+## Stochastic Process
+- if ($X_{t}$) is a stochastic process
+	- for fixed t, $X_{t}$ is a random vairable $X_{t}:\to\:R$
+	- for a fixed 
+## Brownian Motion
+Most important model in MF, process continuous over time: $\{W_t, t > 0\}$
+- **Properties**:
+	1. $W_0 = 0$
+	2. $\forall n \in \mathbb{N}, 0 < t_0 < t_1 < \dots < t_n < \infty$,  
+	   the increments $W_{t_i} - W_{t_{i-1}}$ are independent.
+	3. $\forall 0 \leq s \leq t$,  
+	   $W_t - W_s \sim N(0, t-s)$, and $W_t \sim N(0,t)$.
+	4. The sample paths $t \mapsto W_t(\omega)$ are continuous (no jumps).
+
+---
+## Monte Carlo estimator 
+- **Definition** 
+	- A technique for estimating analytically intractable (but existing) expectations by simulation;
+	- Generating large number of random samples to evaluate the outcome
+	- For integrals that do not have closed forms.
+	The expectation $\mu$ is defined as:$$\mu = \int_{\mathbb{R}} g(x) dF(x) = \mathbb{E}[g(X)]$$where $X \sim F$, and its Monte Carlo estimate is: $$\hat{\mu}_n^{MC} = \frac{1}{n} \sum_{i=1}^{n} g(X_i), \quad X_i \sim F$$use in estimating (rare event), probabilities or conditional. expectations
+- **MC method estimates $\mu$ by**:
+	- Since $\mu = \mathbb{E}(g(X))=\int_{\mathbb{R}^d} g(x)dF(x), X \sim F$ , then $\hat{\mu}_n^{MC} = \frac 1n \sum_{i=1}^n g(X_i)$, and $X_1,...,X_n$ are independent $\sim F$
+	- Able to estimate quantiles that related to F, not just E(X) 
+- **Properties of MC estimator**
+	- $\mathbb{E}(\hat{\mu}_n^{MC})=\frac 1 n \sum_{i=1}^n\mathbb{E}(g(X_i)) = \mu$ 
+	- If $\sigma^2 = Var(g(X)) \lt \infty$, then $Var(\hat{\mu}_n^{MC})=\frac{\sigma^2} n$ 
+	- *Theorem 4.7(Central Limit Theorem)*: 
+		- If $(Z_{n})_{n \in \mathbb{N}}$ is a sequence of independent rvs with cdf F, and if $\mu=\mathbb{E}(Z_{1}) \text{ and } \sigma^{2}=Var(Z_{1})<\infty$ then $$\sqrt{ n } \frac{{\frac{1}{n}\sum_{i=1}^{n}Z_{i}-\mu}}{\sigma} \to N(0,1)$$Shows **Asymptotic normality** and ROC, and MC converges to $\mu$ is $\frac {\sigma }{\sqrt(n)} = O(\frac{1}{\sqrt{ n }})$   
+	- *SSLN Theorem*: 
+		- states that $\mathbb{P}_{n\to \infty} (\hat{\mu}_{n}^{MC}=\mu)=1$ => strongly consistent
+	- *Proposition 1 (Delta method)*:
+		- if $h: \mathbb{R} \to \mathbb{R} \text{ is continuously differentiable with } h'(\mu) \neq 0 \text{ then }\sqrt{ n }{h\left( \frac{\hat{\mu}_n^{MC}-h(\mu)}{\sigma h'(\mu)} \right)}$
+	- **Asymptotic Confidence Interval for** $\mu$ $$CI= \left[ \hat{\mu}_n^{MC} \pm Z_{\frac{1-\alpha}{2}} \frac{\sigma}{\sqrt{n}} \right]$$where $\sigma = s_n = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (g(X_i) - \hat{\mu}_n^{MC})^2}$
+- **Integration** 
+	- If $\mu = \int_a^b g(x) dx$, substitute $u = \frac{x-a}{b-a}$,  then $\mu = (b-a) \mathbb{E}[g(a + (b-a)U)]$ and its Monte Carlo estimate: $\hat{\mu}_n^{MC} =\frac{(b-a)}{n} \sum_{i=1}^{n} g(X_i)$
+	- if $\mu=\int_{0}^{\infty}g(x)dx$, substitute $u=\frac{1}{1+x}$ then $\mu= \mathbb{E}\left( g\left( \frac{1}{U-1} \right){\frac{1}{U^{2}}} \right)$
+	- If $\mu = \int_{-\infty}^{\infty} g(x) dx$, substitute $u = \frac{1}{1-x}$,  then $\mathbb{E}\left( \left( -g\left( -\frac{1}{1-U} \right)+g\left( \frac{{1-U}}{U} \right) \right){\frac{1}{U^{2}}} \right)$
+- **Inversion**$$\mu = \int_{\mathbb{R}} g(x) dF(x) = \mathbb{E}[g(X)] = \mathbb{E}[g(F^{-1}(U))]$$where:$\mu = \int_0^1 g(F^{-1}(u)) du = \mathbb{E}[f(U)], \quad U \sim \prod$ (Independence copula)
+
+### Monte Carlo Estimation of Probabilities
+- If we are interested in estimating $\mu=\mathbb{P}(X \in A),A \subset \mathbb{R}^{d}$ , then
+	1. $\mu=\mathbb{E}(g(X))=\mathbb{E}(\mathbb{1}_{\{X\in A\}})=1\cdot \mathbb{P}(X\in A)+0\implies\hat{\mu}_{n}^{MC}=\frac{1}{n}\sum_{i=1}^{n}\mathbb{1}_{\{X_{i}\in A\}}, X_{1},\dots,X_{n} \sim F$
+	2. $\sigma^{2}=Var(g(X))=\mu(1-\mu)\implies Var(\hat{\mu}_{n}^{MC})=\frac{1}{n}\mu(1-\mu)$
+-  *Example*: 
+	Let $f(x) = \mathbb{1}_{\{X > 2\}}$. We estimate:$$\mu = P(X > 2)$$
+	The cumulative distribution function:$F(x) = P(X \leq x) = \int_{-\infty}^{x} \frac{1}{\pi(1+x^{2})} dt = \lim_{ b \to -\infty }\left( \frac{1}{\pi}\arctan(x) \right)|^{x}_{b}$
+	$$= \frac{1}{\pi} \arctan(x) + \frac{1}{2}$$Thus: $\mu = P(X > 2) = 1 - P(X \leq 2) = 1 - F(2) = \frac{1}{2} - \frac{\pi}{2} \arctan(2)$
+	Variance of the Monte Carlo estimate:$$\text{Var}(\hat{\mu}_n^{MC}) = \frac{1}{n} \text{Var}(\mathbb{1}_{\{X_i > 2\}}) = \frac{\mu(1-\mu)}{n} \sim \text{Bin}(1,\mu)$$
+-  Minimum sample size: $n\geq max\left\{  50,\left\lceil  \left( z_{1-{\alpha}/{2}}\frac{\sigma}{\epsilon} \right)^{2}  \right\rceil  \right\}$
+
+## Variance reduction Techniques (VRTs)
+***Goal***: 
+- To improve the convergence order $\frac{1}{\sqrt{ n }}$, and decrease $\sigma$ or $\sigma^{2}$
+- VRTs aim to reduce variance without changing the expected value 
+1. **(AV) Antithetic Variates** 
+	- **Formula**: $\frac{1}{{n/2}}\sum_{i=0}^{n/2}\:\frac{g(X_{i})+g(Y_{i})}{2}$
+	- Questions:
+		1. Why and when does this lead to a better estimator for µ? 
+		2. How can one construct CIs for µ based on µˆ AV n ? 
+		3. How can one construct negatively correlated pairs (Xi , X˜ i)?
+	- Key Concept:
+		1. Antithetic variates work by creating negatively correlated pairs 
+		2. Not all functions benefit equally from this technique 
+		3. Careful analysis is needed to determine applicability
+		4. Generating Antithetic Pairs 
+			- Most effective when using inversion method 
+			- Works well when: 
+				1. Function g is ***continuous*** and ***monotone*** 
+				2. Sampling from uniform distribution U(0,1) 
+			- For $U \sim U(0,1)$, can use $(U, 1-U)$, more generally, can use $(F^{-1}(U), F^{-1}(1-U))$
+	- Variance Characteristics 
+		- Variance depends on correlation between g(X) and g(Ỹ) 
+		- Best when pairs are negatively correlated
+	- Zero Variance Case
+		- Occurs for linear functions $g(u) = a + bu$
+	- Confidence Interval:
+		- Estimated mean $(\hat{\mu}_{n}^{AV})$
+		- Estimated standard deviation 
+		- Typically narrower than crude MC confidence intervals
+	- ***Proposition 1***: 
+		- $Let\:\sigma^{2}=Var(g(X)).\:The\:variance\:of\:the\:AV\:estimator\:\hat{\mu}_{n}^{AV}is\:given\:by$$Var\left( \hat{\mu}_{n}^{AV} \right)=\frac{\sigma^{2}}{n}+\frac{1}{n}Cov(g(X),g(\tilde{X}))$ $Hence,\:Var(\hat{\mu}_{n}^{AV}\leq Var(\hat{\mu}_{n}^{MC}))\iff Cor(g(X),g(\tilde{X})))\leq0$
+2. **(CV) Control Variates**
+	- *Basic Concept* 
+		- Use a related random variable C with known expected value 
+		- Adjust Monte Carlo estimator to reduce variance
+	- *Control Variate Estimator* : 
+		- $\hat{\mu}_{n}^{CV}=\frac{1}{n}\sum_{i=1}^{n}(Y_{i}+\beta(\mu_{c}-Ci))$ 
+		- β chosen to minimize variance (for any fixed b, CV is unbiased)
+	- *Methods to estimate $\beta$*:
+		- optimal constant $\beta^{*}=\frac{Cov(Y,C)}{Var(C)}$ minimizes the estimator's variance
+		- The corresponding estimator $\hat{\mu}_{n}^{CV,opt}=(1-p^{2})Var(\hat{\mu}_{n}^{MC})\:<\:\hat{\mu}_{n}^{MC}$ 
+3. **Stratified sampling**
+	- ***Basic Concept:***
+		- Divide the domain $\Omega$ into M non-overlapping strata $(S_{1},S_{2},\dots,S_{M})$
+		- Perform *MC estimation* separately in each stratum
+	- ***Stratified estimator:
+		- $\hat{\mu}_{n}^{SS} =\sum_{j=1}^{m}p_{j}\hat{\mu}_{j}$
+		- $\hat{\mu}_{j} =\frac{1}{N_{j}}\sum_{i=1}^{N_{j}}g(X_{i,j}) ,\:the^{ \: }MC\:estimator\:for\:stratum\:j$
+		- $\mathbb{E}\left( \hat{\mu}_{n}^{SS}\right)= \mathbb{E}\left( \sum_{j=1}^{M}p_{j}\hat{\mu}_{j} \right)=\sum_{j=1}^{M}p_{j}\mu_{j}=\mu\implies \hat{\mu}_{n}^{SS}\:is\:unbiased\:for\:\mu$ 
+		- $Var(\hat{\mu}_{n}^{SS})=\sum_{j=1}^{M}\frac{p_{j}^{2}}{N_{j}}\sigma_{j}^{2}$
+	- ***Allocation Strategies*** 
+		1. **Proportional Allocation** $\hat{\mu}^{SS,\:prop},\:N_{j}=np_{j}\:for\:j=1,\dots,M$
+			- Allocate samples proportional to stratum probabilities 
+			- Simple to implement 
+			- Guaranteed variance reduction, $Var(\hat{\mu}_{n}^{SS,opt})$
+		2. **Optimal Allocation** 
+			- Choose $N_{1},\dots,N_{M}$ such that $Var(\hat{\mu}_{n}^{SS})=\sum_{j=1}^{M}\frac{p_{j}^{2}}{N_{j}}\sigma_{j}^{2}$
+			- Minimize variance by allocating samples based on stratum variability 
+			- Requires pilot study to estimate stratum variances 
+			- More complex but potentially more efficient
+		- $Var(\hat{\mu}^{SS,\:opt})\leq\:Var(\hat{\mu}^{SS,\:prop})$

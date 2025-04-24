@@ -1,0 +1,44 @@
+## Sampling methods
+1. Rejection method sampling algorithm
+   - repeat sampling Y ~ g and u ~ U(0,1) until Ucg(Y) ≤ f(Y)
+   - return Y 
+
+    Rejection Method Step:
+    1. find an upper bound for $f(x)$, usually it's $f'(x) = 0$ and f(x) at the top
+    2. find a good cdf G(x) (a function good to integrate) h(x)/c = g(x)
+   
+2. sampling from **maxima and minima**
+   - sample $U\sim U(0,1)$
+   - The inverse function for sampling from minima is: $F^{-1}(1-U^{1/n})$
+   - The inverse function for sampling from maxima is: $F^{-1}(U^{1/n})$
+
+2. sampling from a **product distribution**
+
+    $F(x) = x^2 \frac{e^x - 1}{e - 1}$  is a single function: 
+    - sample $U_1,...,U_k \sim U(0,1)$ and $V_1,...,V_k \sim U(0,1)$
+    - set $Y_j= F_1^{-1}(x)$ and $W_j = F_2^{-1}(x)$ and $X_j = max\{Y_j, W_j\}$ 
+    - return $X_1,...,X_n$
+
+
+    $F(x) = F_1(x) F_2(x)$  where  $F_1$  and  $F_2$  are CDFs -> Use max of two independent samples.
+    - sample $U_1, U_2 \sim U(0,1)$
+    - set $U_1 = F_1 ^{-1}(x)$ and $U_2 = F_2^{-1}(x)$
+    - return $\text{max}\{U_1,U_2\}$
+
+## Hull Haubell's Theorem
+A LCG is full cycle(m) iff
+1. let $p_i$ be the prime factor of M, then $p_i | a-1$
+2. if 4 | m then 4 | a-1
+3. c and m are coprime
+
+## LCG - linear congruent generator
+- $x_n$=($ax_{n-1}$+c)mod m.
+- $u_n = \frac{x_n+1}{m+1}$
+
+## MOD arithmetic
+Let a, b ∈ Z, m ∈ N. We have: 
+1.  (a + km) mod m = a mod m for all k ∈ Z; 
+2.  (a + b) mod m = (a mod m + b mod m) mod m;<br> (ab) mod m = ((a mod m)(b mod m)) mod m;
+3.  
+	- (a + b) mod m = (a + b mod m) mod m;
+	- (ab) mod m = (a(b mod m)) mod m
