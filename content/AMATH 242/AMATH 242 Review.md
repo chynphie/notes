@@ -155,8 +155,9 @@
 	3. $b_{k}=\frac{2}{b-a}∫_{a}^{b}f(t)\sin\left( \frac{2\pi k}{b-a}t \right)dt$
 	4. $a_{0}=\frac{2}{b-a}∫_{a}^{b}f(t)dt$
 	Example:
-	![[./Pasted Photos/image-6.png|472x214]]
-	![[./Pasted Photos/image-7.png|516x278]]
+
+	![[AMATH 242/Pasted Photos/image-6.png|600]]
+	![[AMATH 242/Pasted Photos/image-7.png|600]]
 
 	- Properties to determine $a_{k},b_{k}$: if $N=2\pi\text{ and }t\:\in[0,2\pi]$ then
 		1. $∫_{0}^{2\pi}\cos(kt)\sin(kt)dt=0$
@@ -210,6 +211,3 @@ Fast Fourier Transform
 ![[AMATH 242/Pasted Photos/image-5 2.png|700]]
 
 ![[AMATH 242/Pasted Photos/image-6 2.png| 700]]
-
-![[AMATH 242/Pasted Photos/image.png |600]]
-
