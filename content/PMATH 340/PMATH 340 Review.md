@@ -1,4 +1,4 @@
-## Chapter 4
+## Modular Arithmetic
 - ***Proposition 2.4:***
 	- Let $n$ be a positive integer and $a, b \in \mathbb{Z}$. Then $a \equiv b \pmod{n}$ if and only if $a$ and $b$ have the same remainder when divided by $n$.
 - ***Proposition 26***
@@ -17,7 +17,7 @@
 	    Multiplying both sides by $a - b$ gives:   $$(a - b)mu + (a - b)nv = a - b \\
 	    \Rightarrow (nt)mu + (mk)nv = a - b \\
 	    \Rightarrow nm(tu + kv) = a - b$$Therefore, $a \equiv b \pmod{mn}$, completing the proof.
-## Chapter 5 Modular
+## Inverses and Euler’s Totient Function
 
 - **Theorem 29**
 	- Let $n$ be a positive number. An element $[a] \in \mathbb{Z}_n$ is a unit if and only if $\gcd(a, n) = 1$.
@@ -58,7 +58,7 @@
 	- Let $n$ be a positive integer. Then  $\sum_{d \mid n} \varphi(d) = n$  *where $\sum_{d \mid n}$ denotes the sum over all positive divisors $d$ of $n$.
 <div style="page-break-after: always;"></div>
 
-## Chapter 6
+## Multiplicative functions
 - ***Theorem 43.*** 
 	- The divisor functions τ and σ are multiplicative
 - ***Theorem 44 (Mobius inversion formula):***
@@ -82,7 +82,7 @@ $$
 	a) -1 if $e=1$
 	b) 0 otherwise
 - **identity function** $I(n)=\sum_{d|n}\mu(d)$    
-## Chapter 7-The group of units
+## The group of units
 - ***Proposition 49:***
 	- For all elements $a, b \in \mathbb{F}$, if $ab = 0$ then $a = 0$ or $b = 0$.
 - ***Proposition 50:***
@@ -114,7 +114,7 @@ $$
 
 <div style="page-break-after: always;"></div>
 
-## Chapter 8 - The Gaussian Integers
+## The Gaussian Integers
 - Integer $n$ is a **sum of two squares** $\iff$ n is the area of lattice square
 - ***Proposition 59***:
 	- Let $z,w\in \mathbb{Z}[i].$ Then
@@ -122,11 +122,11 @@ $$
 		2. $N(zw)=N(z)N(w)$
 - ***Proposition 60***: 
 	- $\text{The group of units in the Gaussian integers is }\mathbb{Z}[i]^{*}=\{ 1,-1,i,-i \}$
-- ***Theorem 61 (the division algorithm for the Gaussian integers)***: 
+- ***Theorem 61 (the division algorithm for the Gaussian integers)***:
 	- $\text{Let }z,w\in \mathbb{Z}[i]\text{ with }w\neq0 \text{ Then there exists }q,r\in \mathbb{Z}[i]\text{ so that }z=qw+r\text{ and }N(r)<N(w)$
 	Example: find gcd for $1+3i,2$ (use the large number on the LHS) $1+3i = 2i+(1+i), 2=(2+i)(1-i)+0$  the remainder becomes 0 => terminates
 - ***Theorem 62 (Bezout's identity in the Gaussian integers)***
-	- $\text{Let }z,w\in \mathbb{Z}[i],\text{ not both zero, and let d be a gcd of }z \text{ and }w.$$\text{Then there exist }u,v \in \mathbb{Z}[i]\text{ satisfying }d=zu+wu$
+	- $Let\:z,w\in \mathbb{Z}[i],\:not\:both\:zero,\:and\:let\:d\:be\:a\:gcd\:of\:z\:and\:w\text{, Then there exist}\:u,v\in \mathbb{Z}[i]\:satifying\:d=zu+wu$
 - ***Corrollary***: 
 	- $\text{If } gcd(v_{0},\delta)=d, \text{ then }\{uw+vz: u_{0}v\in \mathbb{Z}[i]\}=\{ da:a\in \mathbb{Z}[i]\}$
 - Let $z,w \in \mathbb{Z}[i]$, $z,w$ are **associates** if $z = w u$ with $u \in \mathbb{Z}[i]^*$ s.t. $z=wu$
@@ -138,12 +138,6 @@ $$
 
 #### Greatest Common Divisors
 - **Definition**: Let $w,z \in \mathbb{Z}[i]$ with $w, z \neq 0$. The $\gcd (w,z)$ is a **common divisor** of $\mathbb{Z}[i]$ of **maximum norm**.$\gcd(3+4i, 1+i) = \gcd(25,2) = 1 \Rightarrow d=1$
-- ***Theorem 62 (Bézout's identity for the Gaussian integers):***  
-	Let $z,w \in \mathbb{Z}[i]$ both nonzero and (let $d = \gcd(z,w)$). Then $\exists u,v \in \mathbb{Z}[i]$ s.t. $d = uz + vw$.$$
-  \gcd(z,w) = d \Rightarrow w = d w_0, z = d z_0, N(dz_0) = N(d)N(z_0)$$
-		  ($z = zw_0 + vw_0$) If $z = d z_0$, it is to show $z= qz_0 + w_0 v$ $$
-		  r = z - qz_0 = (z - qw_0)$$$z = \frac{z}{d} = \frac{z}{\gcd(z,w)}$$Since $N(z_0) = \min \{ N(w_0 z + v w) \}$ and $N(z_0) < N(z)$ $\Rightarrow N(z) = 0$, r=0. $\Rightarrow \gcd(z,w) = d$  Now suppose $d'$ is a common divisor, $d' \mid d$, i.e. $d = d' c$, where $c \in \mathbb{Z}[i]$. $d' \mid w_0 \Rightarrow c (w_0 + pw) \Rightarrow c \mid d$ Therefore, $N(d') \mid N(d)$. Since $d' \mid d$, we have $d' \mid d$, while $d' \neq \pm d$. Thus, $N(d') N(d) \geq N(d)$.
-
 ---
 #### Gaussian Primes
 - Let $\pi$ be a **Gaussian Integer** that is not a unit.  $\pi$ is a **Gaussian prime** if $z \mid \pi \Rightarrow z \in \mathbb{Z}[i]^{*}$ or $z$ is an **associate** of $\pi$. 

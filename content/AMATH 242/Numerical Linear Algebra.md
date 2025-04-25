@@ -1,0 +1,12 @@
+
+- **Theorem 3.1 (Existence and Uniqueness) : Consider $A\vec x = \vec b$.**  
+	- Case 1: $\det(A)\neq0$ (rows/columns independent) ⇔ unique solution $\vec x = A^{-1}\vec b$.  
+	- Case 2: $\det(A)=0$ ⇒  
+		- If $\vec b\in\mathrm{range}(A)$ then infinitely many solutions.  
+		- If $\vec b\notin\mathrm{range}(A)$ then no solution.
+- **Theorem 3.2 (LU Factorization)**  
+	- For all $A\in\mathbb R^{n\times n}$ there exist a permutation matrix $P$, a unit lower‐triangular $L$ and upper‐triangular $U$ such that  $$PA = LU.$$
+- **Theorem 3.3 (Convergence of Jacobi & Gauss–Seidel)**  
+	- Let $\vec x^{(0)}$ be any start. If $A$ is strictly diagonally dominant then both Jacobi and Gauss–Seidel iterations converge to the unique solution of $A\vec x = \vec b$.
+- **Theorem 3.4 (Convergence of General Iterative Methods)** 
+	- Consider $$\vec x^{(i+1)} = \vec x^{(i)} + B^{-1}(\vec b - A\vec x^{(i)})$$with $\det(A)\neq0$. If there is a matrix‐norm $\|\cdot\|_p$ such that  $$\|I - B^{-1}A\|_p < 1,$$then the iteration converges in that norm for any start $\vec x^{(0)}$.

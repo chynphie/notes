@@ -1,66 +1,90 @@
+---
+tags: [AppliedMath, FFT, FT, Interpolation]
+---
+[[AMATH242-Outline]]
 ### Errors and Error Propagation
-![[AMATH 242/Pasted Photos/image-2 1.png|489x89]]
-![[AMATH 242/Pasted Photos/image-3 1.png|649x112]]
 
+- ***Theorem 1.1*** :
+	-  For any floating point system $F$ under chopping,$$|\delta x| = \left|\frac{x - fl(x)}{x}\right| \le \epsilon_{mach}$$
+- **Theorem 1.2 (Cauchy–Schwartz Inequality)**  
+	- Let $\|\cdot\|$ be a vector norm over a vector space $V$ induced by an inner product. Then  
+	$$
+	|\vec{x}\cdot\vec{y}| \le \|\vec{x}\|\,\|\vec{y}\|
+	$$
 
 ---
 ### Convergence Theory
 
-![[AMATH 242/Pasted Photos/image-4 1.png|600|581x94]]
+- **Theorem 2.1 (Intermediate Value Theorem)**  
+	- If $f(x)$ is continuous on a closed interval $[a,b]$ and $c\in[f(a),f(b)]$, then there exists $x^*\in[a,b]$ such that  $$f(x^*) = c$$
+- **Theorem 2.2**  
+	- If $f(x)$ is continuous on $[a_0,b_0]$ with $f(a_0)\,f(b_0)\le0$, define for $k\ge1$  $$
+a_k = 
+\begin{cases}
+a_{k-1}, & \text{if }f\bigl(\tfrac{a_{k-1}+b_{k-1}}2\bigr)\,f(a_{k-1})\le0,\\
+\tfrac{a_{k-1}+b_{k-1}}2, & \text{otherwise},
+\end{cases}
+\quad
+b_k = 
+\begin{cases}
+b_{k-1}, & \text{if }f\bigl(\tfrac{a_{k-1}+b_{k-1}}2\bigr)\,f(a_{k-1})>0,\\
+\tfrac{a_{k-1}+b_{k-1}}2, & \text{otherwise}.
+\end{cases}
+$$  Then $f(a_k)\,f(b_k)\le0$ for all $k$.
 
-
-![[AMATH 242/Pasted Photos/image-5 1.png|600|595x196]]
-
-![[AMATH 242/Pasted Photos/image-6 1.png|588x136]]
-
-![[AMATH 242/Pasted Photos/image-7 1.png|604x113]]
-
-![[AMATH 242/Pasted Photos/image-8.png|607x70]]
-
+- **Theorem 2.3 (Contraction Mapping Theorem)**  
+	- Let $g$ be a real-valued function, defined and continuous on $[a,b]$, with $g(x)\in[a,b]$ and suppose $g$ is a contraction on $[a,b]$. Then  
+		1. $g$ has a unique fixed point $x^*\in[a,b]$.  
+		2. The iterates $x_{k+1} = g(x_k)$ converge to $x^*$ for any $x_0\in[a,b]$.
+- **Theorem 2.4 (Convergence Theorem for Newton’s Method) *(Atkinson p.60)***  
+	- If $f(x^*)=0$, $f'(x^*)\neq0$, and $f,f',f''$ are continuous on $I_\delta=[x^*-\delta,x^*+\delta]$, then with $x_0$ sufficiently close to $x^*$ the Newton iterates converge quadratically, with  $$
+	\lim_{i\to\infty}c_i = \left|\frac{f''(x^*)}{2\,f'(x^*)}\right|.
+	$$
+- **Theorem 2.5 (Convergence Theorem for Secant Method) *(Atkinson p.67)***  
+	- If $f(x^*)=0$, $f'(x^*)\neq0$, and $f,f',f''$ are continuous on $I_\delta=[x^*-\delta,x^*+\delta]$, then the secant iterates converge with order  $$q = \tfrac12\,(1 + \sqrt5).$$
 
 ---
-### Gaussian Elimination
-![[AMATH 242/Pasted Photos/image-1.png|359x149]]
-
 ### Numerical Linear Algebra
-![[AMATH 242/Pasted Photos/image-10.png|600]]
 
-![[AMATH 242/Pasted Photos/image-11.png|600]]
-
-![[AMATH 242/Pasted Photos/image-12.png|600]]
-
-![[AMATH 242/Pasted Photos/image-13.png|600]]
-
-
-
+- **Theorem 3.1 (Existence and Uniqueness) : Consider $A\vec x = \vec b$.**  
+	- Case 1: $\det(A)\neq0$ (rows/columns independent) ⇔ unique solution $\vec x = A^{-1}\vec b$.  
+	- Case 2: $\det(A)=0$ ⇒  
+		- If $\vec b\in\mathrm{range}(A)$ then infinitely many solutions.  
+		- If $\vec b\notin\mathrm{range}(A)$ then no solution.
+- **Theorem 3.2 (LU Factorization)**  
+	- For all $A\in\mathbb R^{n\times n}$ there exist a permutation matrix $P$, a unit lower‐triangular $L$ and upper‐triangular $U$ such that  $$PA = LU.$$
+- **Theorem 3.3 (Convergence of Jacobi & Gauss–Seidel)**  
+	- Let $\vec x^{(0)}$ be any start. If $A$ is strictly diagonally dominant then both Jacobi and Gauss–Seidel iterations converge to the unique solution of $A\vec x = \vec b$.
+- **Theorem 3.4 (Convergence of General Iterative Methods)** 
+	- Consider $$\vec x^{(i+1)} = \vec x^{(i)} + B^{-1}(\vec b - A\vec x^{(i)})$$with $\det(A)\neq0$. If there is a matrix‐norm $\|\cdot\|_p$ such that  $$\|I - B^{-1}A\|_p < 1,$$then the iteration converges in that norm for any start $\vec x^{(0)}$.
 
 ---
 ### Polynomial Interpolation
-- Determing **Hermite interpolating Polynomial** steps
-	- Method 1:
+- [[Hermite interpolating Polynomial]] :
+	-  Method 1: 
 		1. **List your “nodes” with multiplicity**
 			- $z0​=a,z1​=a,z2​=b,z3​=b.$
 		2. **Fill in the zeroth column** with 
 			- $f[z0​]=f(a),f[z1​]=f(a),f[z2​]=f(b),f[z3​]=f(b).$
 		3. **First divided differences**
-		    
-		    - For the repeated node at a:
-			    - $f[z1​,z0​]=f'(a)$
-		    - For the mixed node (a,b)
-			    - $f[z2​,z1​]=\frac{f(b)−f(a)​}{b−a}.$
-		    - For the repeated node at b:
-		        - $f[z3​,z2​]=f′(b).$
+			
+			- For the repeated node at a:
+				- $f[z1​,z0​]=f'(a)$
+			- For the mixed node (a,b)
+				- $f[z2​,z1​]=\frac{f(b)−f(a)​}{b−a}.$
+			- For the repeated node at b:
+				- $f[z3​,z2​]=f′(b).$
 		4. **Second divided differences**
-		    - $f[z2​,z1​,z0​]=\frac{f[z2​,z1​]−f[z1​,z0​]​}{z2​−z0​}=\frac{\frac{f(b)−f(a)}{b−a}​−f′(a)}{b−a}​,$
-		    - $f[z2​,z1​,z0​]=\frac{f[z3​,z2​]−f[z2​,z1​]}{z3​−z1​}=\frac{\frac{f(b)−f(a)}{b−a}​−f′(a)}{b−a}​,$
+			- $f[z2​,z1​,z0​]=\frac{f[z2​,z1​]−f[z1​,z0​]​}{z2​−z0​}=\frac{\frac{f(b)−f(a)}{b−a}​−f′(a)}{b−a}​,$
+			- $f[z2​,z1​,z0​]=\frac{f[z3​,z2​]−f[z2​,z1​]}{z3​−z1​}=\frac{\frac{f(b)−f(a)}{b−a}​−f′(a)}{b−a}​,$
 		5. **Third divided difference**
 			- $f[z3​,z2​,z1​,z0​]=\frac{​f[z3​,z2​,z1​]−f[z2​,z1​,z0​]​}{z3​−z0}=\frac{f[z3​,z2​,z1​]−f[z2​,z1​,z0​]}{b−a}$
 		6. **Write the Newton form**
 			- $H(x)=f[z0​]+f[z1​,z0​](x−z0​)+f[z2​,z1​,z0​](x−z0​)(x−z1​)+f[z3​,z2​,z1​,z0​](x−z0​)(x−z1​)(x−z2​)$
-- **Cubic Spline**:
-	- Definition:
-		1. Uses cubic polynomials between successive nodes
-		2. Satisfies specific interpolation and smoothness conditions
+- [[Cubic Spline]]:
+	1. Uses cubic polynomials between successive nodes
+	2. Satisfies specific interpolation and smoothness conditions
+	
 	- **Boundary Conditions**
 		1. Free Boundary (Natural Cubic Spline):
 			- $S_1'(x0) = 0$
@@ -75,14 +99,14 @@
 		- Requires determining 4n constants
 		- Polynomial form:$Sj(x) = aj + bj(x - xj) + cj(x - xj)² + dj(x - xj)³$
 		- Uses complex system of equations to determine coefficients
-<div style="page-break-after: always;"></div>
 
+---
 ### Numerical Integration
 - **Numerical Quadrature**: Approximating definite integrals numerically, using weighted sum of integrand value. i.e. $I(f)=∫_{a}^{b}f(x)dx\approx Q_{n}(f)=\sum(w_{i}f(x_{i}))$
 	- Methods finding Nodes (xi) and weights (wi):
 		1. *Method of Undetermined Coefficients*
-			![[Pasted image 20250418094722.png|436|479x176]]
-			![[Pasted image 20250418094629.png|435|457x156]]
+			![[Pasted image 20250418094722.png|436|468x199]]
+			![[Pasted image 20250418094629.png|435|484x165]]
 	
 		2. *Polynomial Interpolation*
 		3. *Lagrange Interpolating Polynomial*
@@ -108,6 +132,7 @@
 	- $T(f)=\frac{h}{2}[ f(a)\:+\sum_{i=1}^{n-1}2f(x_{i})+f(b)], h=\frac{b-a}{n}$
 	- $|E(f)|\leq \frac{h^{2}}{12}(b-a)M,\:M=max|f''(x)|\:for\:a\leq x\leq b$
 - **Composite Simpson's Rule (also 1/3 Simpsons Rule):**
+	
 	![[Pasted image 20250418111615.png | 400]]
 	- Properties:
 		1. Subintervals are **even** as we integrate 2 subsections at a time
@@ -132,9 +157,9 @@
 <div style="page-break-after: always;"></div>
 
 ### Discrete Fourier Methods
-#### Real Fourier Series
+#### [[Real Fourier Series]]
+- Process of representing periodic functional data as a combination of trigonometric functions
 - Fourier analysis is a method of approximating **periodic functional** data using combinations of sine and cosine waves, converting time or spatial information into frequency information.
-- **Definition**: Process of representing periodic functional data as a combination of trigonometric functions
 - **Applications**:
 	1. Identifying phone button sounds
 	2. Storing images
@@ -143,8 +168,7 @@
 - ***Euler's Formula***: 
 	- $e^{i\theta}=\cos(\theta)+i\sin(\theta)$
 	- $e^{-i\theta}=\cos(\theta)-i\sin(\theta)$
-- ***Periodic Functions***:
-	- **Definition**: A function f(t) is periodic if $f(t + T) = f(t)$
+- ***[[Periodic Functions]]***: A function f(t) is periodic if $f(t + T) = f(t)$
 	- **Fundamental period** $\frac{T}{k}$: Smallest positive T that satisfies the periodicity condition
 	- **Frequency**: $f = 1/T$ (oscillations per second)
 	- **Angular frequency**: $ω = 2πf$ (radians per second)
@@ -155,9 +179,8 @@
 	3. $b_{k}=\frac{2}{b-a}∫_{a}^{b}f(t)\sin\left( \frac{2\pi k}{b-a}t \right)dt$
 	4. $a_{0}=\frac{2}{b-a}∫_{a}^{b}f(t)dt$
 	Example:
-
-	![[AMATH 242/Pasted Photos/image-6.png|600]]
-	![[AMATH 242/Pasted Photos/image-7.png|600]]
+	>![[AMATH 242/Pasted Photos/image-6.png|600|653x281]]
+	![[AMATH 242/Pasted Photos/image-7.png|600|690x363]]
 
 	- Properties to determine $a_{k},b_{k}$: if $N=2\pi\text{ and }t\:\in[0,2\pi]$ then
 		1. $∫_{0}^{2\pi}\cos(kt)\sin(kt)dt=0$
@@ -167,19 +190,28 @@
 - Function properties:
 	1. $f(x)=f(-x)\implies \text{Even function}$
 	2. $f(x)=-f(-x)\implies \text{odd function}$
-- **Discrete Fourier Transform**:
-	
-	![[AMATH 242/Pasted Photos/image-1.png|359x149]]
-	
-	![[AMATH 242/Pasted Photos/image-3 2.png|658x362]]
-	
-	![[AMATH 242/Pasted Photos/image-4 2.png|655x134]]
-	
-	
+### **[[Discrete Fourier Transform]]**:
+ - The DFT of a discrete-time signal $f[n]$ with $0 \le n \le N-1$ is$$F[k] = \mathrm{DFT}\{f[n]\}= \sum_{n=0}^{N-1} f[n]\,W_N^{-kn},\quad0 \le k \le N-1.$$
+- The inverse DFT is$$f[n] = \mathrm{IDFT}\{F[k]\}= \sum_{k=0}^{N-1} F[k]\,W_N^{kn},\quad0 \le n \le N-1.$$
+
+- Nth Roots of Unity: 
+	- The $N$th roots of unity are the integer powers of$$W_N := \exp\!\biggl(i\frac{2\pi}{N}\biggr).$$We may write the $N$ distinct $N$th roots of unity as$$W_N^k = \exp\!\biggl(i\frac{2\pi k}{N}\biggr),\quad k = 0,1,\dots,N-1.$$
+- Proposition
+	- The $N$th roots of unity satisfy:
+		1. $(W_N^k)^N = 1$, since
+		   $$(W_N^k)^N = \exp\!\Bigl(i\frac{kN\,2\pi}{N}\Bigr)= \exp(i k\,2\pi)= 1.$$
+		2. The complex conjugate of a root is$$\bigl(W_N^k\bigr)^* = W_N^{\,N-k}.$$
+- **Proposition**
+	- The frequency-domain signal $F[k]$ is periodic with period $N$:$$F[k] = F[k + sN],\quad\:s \in \mathbb{Z}.$$
+- **Theorem (Avoid Aliasing):**  
+	- To avoid aliasing error, the sampling frequency $f_s$ should be at least twice the largest frequency present in the continuous signal.
+	>Human-audible sound falls in the range 20 Hz to 20 kHz.  Thus we require$$f_s \ge 2 \times 20{,}000\text{ Hz} = 40\text{ kHz}$$
+
 - ***Fundamental convergence theorem for Fourier series***: 
 
 	![[AMATH 242/Pasted Photos/image-4.png |800|432x119]]
-	
+
+
 	![[AMATH 242/Pasted Photos/image-5.png|469x236]]
 #### Complex Fourier series:
 - $f(t)=\sum_{k=-\infty}^{\infty}c_{k}e^{ikt}dt$  with f(t) defined on $[-\pi,\pi]$ and
@@ -191,23 +223,14 @@
 	4. $a_{k}=2\mathrm{Re}(c_{k}),\:b_{k}=-2Im(c_{k})$
 	5. If f(t) is even, Im($c_{k}$) =0. f(t) odd, Re($c_{k}$)=0
 ![[AMATH 242/Pasted Photos/image-1 2.png]]
-- 
 
-#### Fast Fourier Transform
-- Algorithm
-```
-Fast Fourier Transform
-	function F = FastFT(f, N)
-		m = log N
-		if m = 0
-			F = f
-		else
-			build g[N]
-			build h[N]
-		F[even] = (1/2) FastFT(g, N/2)
-		F[odd] = (1/2) FastFT(h, N/2)
-	end
-```
-![[AMATH 242/Pasted Photos/image-5 2.png|700]]
-
-![[AMATH 242/Pasted Photos/image-6 2.png| 700]]
+### [[Fast Fourier Transform]]
+- Assume the factors $W_{N}^{kn}$ are precomputed and stored in a table
+- use Formula directly to compute N coefficients $F[k]$. Amount of work is then $W=(N-1)A+(N+1)M=2N\:flops/coefficient\implies Total\:work\:is\:then\:N(2N)=2N^{2}$
+- **Theorem 4.4**:
+	- If $N=2^{m}$ for some integer m, then the length N DFT F[k] of discret Time signals f[n] can calculated by combining two length $\frac{N}{2}$ DFT. we define
+		- $g[n]=f[n]+f\left[ n+\frac{N}{2} \right]$
+		- $h[n]=\left( f[n]-f\left[ n+\frac{N}{2} \right] \right)W_{N}^{-n}$
+		Then
+		- $F[2l]=\frac{1}{2}DFT\{ g[n] \}$ (even indices)
+		- $F[2l+1]=\frac{1}{2}DFT\{ h[n] \}$ (odd indices)

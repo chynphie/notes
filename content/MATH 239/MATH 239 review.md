@@ -1,5 +1,5 @@
 # Graph theories:
-## Paths and Cycles
+[[ Paths and Cycles]]
 - *Handshaking lemma:*  
 	- $\sum_{v \in V} deg(V) = 2|E(G)|$
 - *Theoreom 4.6.2*: 
@@ -185,7 +185,7 @@ A **planar graph** is a graph that can be embedded in the plane without edges cr
 - ***Theorem*** : 
 	- M is not maximum matching if and only if there exist an augmenting path
 	Proof:
-	![[MATH 239/Untitled/image-6.png|633x192]]
+	![[MATH 239/Untitled/image-6.png|745x228]]
 - **Augmenting Path**: (consisted of alternating path, a path between $M$ and $\bar{M}$)
 	![[MATH 239/Untitled/image-7.png|598x222]]
 - ***Konig's Theorem:*** 
@@ -212,7 +212,7 @@ A **planar graph** is a graph that can be embedded in the plane without edges cr
 
 # Enumeration Methods:
 
-## Chapter 1: 
+## Basic Principles of Enumeration:
 - *Binomial Theorem*: For any natural Number $n\in N$ $(1+x)^n = \sum_{k=0}^n {n \choose k} x^k$ 
 - *Negative Binomial Theorem:* 
 - *Theorem 1.2*. 
@@ -230,7 +230,7 @@ A **planar graph** is a graph that can be embedded in the plane without edges cr
  - **Bijective Proofs** ( $\forall a \in A$ ( $\forall b \in B$ ) has a unique representation in $B$ ($A$) )
 	- a) Find relationship of the two sets
 	- b) create a mapping function such that $f(a)=b$ and $g(b)=a$ where $a \in A$ and $b \in B$ => $|A| = |B|$
-## Chapter 3: 
+## The Idea of Generating Series:
 - *Theorem 3.26 (for forbidden string)* : 
 	- let $k \in \{0,1\}^*$ := nonempty string of length n,
 	- let $A=A^k$ :=set of binary string that avoid $k$;  
@@ -250,7 +250,7 @@ A **planar graph** is a graph that can be embedded in the plane without edges cr
 - **Prefix** decompositions: 
 	 - a set of binary string is a regular expression of the form *A\*B or A(B\*)* 
 - **Recursive** decompositions: 
-## Chatper 4 Recurrence Relations: 
+##  Binary Strings and Recurrence Relations: 
 - Step:
 	1) write out the recurrence relation in terms of $\sum a_nx^n = \sum a_{n-1}x^{n-1} + \sum a_{n-2}x^{n-2}+...+\sum a_{n-k}x^{n-k}$ 
 	2) $A(x)-a_0-a_1x-a_2x^2-...-a_kx^k =$ plug in the initial values given for $a_0, a_1,...,a_k$ 

@@ -1,0 +1,1 @@
+A function f(t) is periodic if $f(t + T) = f(t)$
