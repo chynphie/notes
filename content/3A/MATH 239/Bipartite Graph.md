@@ -1,7 +1,7 @@
 - A graph is **bipartite**
 	1. (A,B) has exactly one edge in a and one edge in B, expressed as $K_{m,n}$ (the graph can be non symmetric)
 		
-		![[/MATH 239/239PastedPhotos/image-16.png|100x111]]
+		![[/content/3A/MATH 239/239PastedPhotos/image-16.png|100x111]]
 	2. G and be seperated into exactly 2 set of vertex {A, B}
 	3. If and only if each component is bipartite
 	4. If it is 2 colourable

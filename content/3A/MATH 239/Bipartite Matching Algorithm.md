@@ -1,8 +1,8 @@
-![[/MATH-239/239PastedPhotos/image-17.png|589x159]]
-![[/MATH-239/239PastedPhotos/image-18.png|591x113]]
+![[content/3A/MATH 239/239PastedPhotos/image-17.png|589x159]]
+![[content/3A/MATH 239/239PastedPhotos/image-18.png|591x113]]
 
 - Example:
-	![[/MATH-239/239PastedPhotos/image-19.png|344x159]]
+	![[content/3A/MATH 239/239PastedPhotos/image-19.png|344x159]]
 	1. draw a graph that start with unsaturated vertex in X, and connects its neighbours in Y
 	2. connected the vertex of neighbours in Y that is a matching in A
 	3. repeat the process and will find an augmented path

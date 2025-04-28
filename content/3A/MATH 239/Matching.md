@@ -10,7 +10,7 @@
 	Proof:
 	![[content/3A/MATH 239/239PastedPhotos/image-6.png|745x228]]
 - **Augmenting Path**: (consisted of alternating path, a path between $M$ and $\bar{M}$)
-	![[content/3A/MATH 239/239PastedPhotos/image-7.png|598x222]]
+	![/content/3A/MATH 239/239PastedPhotos/image-7.png|598x222]
 - ***Konig's Theorem:*** 
 	- Conditions:
 		1. Bipartite Graph
