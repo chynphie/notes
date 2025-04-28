@@ -1,0 +1,17 @@
+- *Binomial Theorem*: For any natural Number $n\in N$ $(1+x)^n = \sum_{k=0}^n {n \choose k} x^k$ 
+- *Negative Binomial Theorem:* 
+- *Theorem 1.2*. 
+	- For every n  1, the number of lists of an n-element set S is n(n -1)(n -2) · · · 3 · 2 · 1.
+- *Theorem 1.3*. 
+	- For every n  0, the number of subsets of an n-element set is 2 n .
+- *Theorem 1.4*. 
+	- For n, k  0, the number of partial lists of length k of an n-element set is n(n  1) · · · (n  k + 2)(n  k + 1).
+- *Theorem 1.5.* 
+	- For $0 \leq k \leq n$, the number of k-element subsets of an n-element set is ${n\choose k} = \frac {n!}{k!(n  k)!}$.
+- *Theorem 1.9*. 
+	- For any $n\geq0$ and $t \geq 1$, the number of n-element multisets with elements of t types is ${n+t-1 \choose t-1}$
+- **Multisets**: 
+	- Let n  0 and t  1 be integers. A multiset of size n with elements of t types is a sequence of nonnegative integers $(m_1 , ..., m _t)$ such that $m 1 + m 2 + · · · + m t = n$
+ - **Bijective Proofs** ( $\forall a \in A$ ( $\forall b \in B$ ) has a unique representation in $B$ ($A$) )
+	- a) Find relationship of the two sets
+	- b) create a mapping function such that $f(a)=b$ and $g(b)=a$ where $a \in A$ and $b \in B$ => $|A| = |B|$

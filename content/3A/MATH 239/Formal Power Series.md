@@ -1,0 +1,8 @@
+- *Theorem 3.1:*
+	- The inverse of a formal power series A(x) exists if and only if A(0) 6 = 0. Moreover, if the inverse exists, then it is unique.
+- *Theorem 3.2:*
+	- Let A(x) and B(x) be formal power series. If B(0) = 0, then A(B(x)) is a well-defined formal power series
+-  *Theorem 4.1.* 
+	- If A(x) is a formal power series such that A(x)2 = 1 + x, then A(x) is not rational
+- *Theorem 4.2.*
+	- If A(x) is a rational formal power series and A(x)2 is a polynomial, then A(x) is itself a polynomial

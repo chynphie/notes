@@ -1,0 +1,1 @@
+- **Definition**: Let $w,z \in \mathbb{Z}[i]$ with $w, z \neq 0$. The $\gcd (w,z)$ is a **common divisor** of $\mathbb{Z}[i]$ of **maximum norm**.$\gcd(3+4i, 1+i) = \gcd(25,2) = 1 \Rightarrow d=1$

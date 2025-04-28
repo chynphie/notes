@@ -1,0 +1,9 @@
+- ***Theorem 5.2.1***: 
+	- A graph G is connected iff it has a spanning tree
+- ***Corollary 5.2.2***: 
+	- If G is connected with p vertices and $q=p-1$ edges, then G is a tree
+- ***Theorem 5.2.3*:** 
+	- If T is a spanning tree of G and e is an edge in T, then $T-e$ has 2 components. If e' is in the cut induced by one of the components, then $T+e-e'$ is also a spanning tree of G.
+- ***Theorem 5.2.4.***
+	- If T is a spanning tree of G and e is an edge in T , then $T-e$ has 2 components. If e 0 is in the cut induced by one of the components, then $T-e+f$ is also a spanning tree of G
+- A **spanning tree** is a subgraph $H$ of $G$ that is a tree and $V(H)=V(G)$.  

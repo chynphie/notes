@@ -1,0 +1,6 @@
+- *Theorem 4.9.2*:
+	- Let G be a connected graph. Then G has a Eulerian circuit **iff** every **vertex has even degree**
+	- Eulerian trail exists iff there are **at most 2 odd degree**
+- An **Eulurian circuit** of a graph G is a **closed walk** that contains every edge of G exactly once.
+- An **Eulerian Trail** in a graph is a walk that traverses every edge in a graph exactly once 
+	- guarantees connectivity and exactly two vertices with odd degrees.

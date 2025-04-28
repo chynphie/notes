@@ -2,7 +2,7 @@ import { Translation } from "./definition"
 
 export default {
   propertyDefaults: {
-    title: "Untitled",
+    title: "239PastedPhotos",
     description: "No description provided",
   },
   components: {

@@ -1,0 +1,3 @@
+- A **leaf** is a vertex of degree 1.  
+- A tree with at least two vertices has at least **two leaves**.  
+- Since $\sum_{v\in V}\text{deg}(v)-2=2$.

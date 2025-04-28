@@ -1,0 +1,7 @@
+- an edge e of G is a **bridge** if G-e has more components than G
+- *Lemma 4.10.2:* 
+	- If e = {x, y} is a bridge of a connected graph G, then G - e has precisely two components; furthermore, x and y are in different components
+-  *Theorem 4.10.3:*
+	- An edge e is a bridge of a graph G iff it is not contained in any cycle of G
+- *Corollary 4.10.4:*
+	- If there are 2 distinct path from vertex u to vertex v in G then G contains a cycle

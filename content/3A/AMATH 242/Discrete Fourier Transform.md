@@ -16,10 +16,10 @@
 
 - ***Fundamental convergence theorem for Fourier series***: 
 
-	![[AMATH 242/Pasted Photos/image-4.png |800|432x119]]
+	![[content/3A/AMATH 242/Pasted Photos/image-4.png|800|432x119]]
 
 
-	![[AMATH 242/Pasted Photos/image-5.png|469x236]]
+	![[content/3A/AMATH 242/Pasted Photos/image-5.png|469x236]]
 #### Complex Fourier series:
 - $f(t)=\sum_{k=-\infty}^{\infty}c_{k}e^{ikt}dt$  with f(t) defined on $[-\pi,\pi]$ and
 - $c_{k}=\frac{1}{2\pi}∫_{-\pi}^{\pi}f(t)e^{-ikt}dt=\frac{1}{2}(a_{k}-ib_{k})$ 
@@ -29,4 +29,4 @@
 	3. $b_{0}=0,c_{0}=\frac{1}{2}a_{0}$
 	4. $a_{k}=2\mathrm{Re}(c_{k}),\:b_{k}=-2Im(c_{k})$
 	5. If f(t) is even, Im($c_{k}$) =0. f(t) odd, Re($c_{k}$)=0
-![[AMATH 242/Pasted Photos/image-1 2.png]]
+![[image-1 2.png]]

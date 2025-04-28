@@ -1,0 +1,1 @@
+![[content/3A/AMATH 242/formula_sheet.pdf]]
