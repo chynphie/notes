@@ -1,2 +1,2 @@
 # Chynphie's Note
-Here are some notes I'll be sharing from UW math courses.
+Here are some notes that I'll be sharing from UW math courses.
