@@ -1,0 +1,13 @@
+> [!theorem] Fundamental Theorem of Linear Programming:
+> Let (P) denote an LP problem
+> 1. Either (P) is *infeasible*, or it is *unbounded*, or it has an *optimal* solution. Moreover, suppose that (P) is in standard equality form and its constraints matrix has full rank
+> 2. If (P) has a **feasible** solution, then it has a feasible solution that is basic.
+> 3. If (P) has an **optimal** solution, then it has an optimal solution that is basic.
+
+> [!theorem] Theorem 1.16:
+> - Consider a $TP$ with $b(N) = 0$. 
+> - Then the TP is **infeasible** iff there exists a set of nodes S such that $b(S) < 0$ and $δ(S) = ∅$ (i.e., there exists a node set $S$ with negative demand such that the cut with shore S is empty).
+
+> [!theorem] Theorem 1.17:
+> - A TP is unbounded iff it has a feasible solution and its digraph has a dicylce of negative cost.
+

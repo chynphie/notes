@@ -1,3 +1,9 @@
+- *Definition 1.10*. Let f : A ! B be a function from a set A to a set B.
+	-  The function f is surjective if for every b 2 B there exists an a 2 A such that f (a) = b.
+	- The function f is injective if for every a, a0 2 A, if f (a) = f (a0),then a = a0
+	- The function f is bijective if it is both ==surjective== and ==injective==.
+	- The notation A ⌦ B indicates that there is a bijection between The sets A and B.
+
 - *Binomial Theorem*: For any natural Number $n\in N$ $(1+x)^n = \sum_{k=0}^n {n \choose k} x^k$ 
 - *Negative Binomial Theorem:* 
 - *Theorem 1.2*. 

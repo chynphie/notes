@@ -1,0 +1,3 @@
+- Model  
+- Lp, Dual LP, CS conditions  
+- Certifying optimality
