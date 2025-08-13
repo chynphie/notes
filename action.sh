@@ -28,7 +28,7 @@ if [ -f "./$QUARTZ_STYLES_DIR/custom.scss" ]; then
 else
   echo_warn "Quartz root not detected, checking if we are in the styles directory..."
   if [ -f "./custom.scss" ]; then
-    echo_ok "Styles directory detected..."œ
+    echo_ok "Styles directory detected..."
     FINAL_THEME_DIR="./$THEME_DIR"
   else
     echo_err "Cannot detect Quartz repository. Are you in the correct working directory?" 1>&2

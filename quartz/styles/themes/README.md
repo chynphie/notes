@@ -1,32 +1,47 @@
-# Obsidian Nord
+# Adwaita
 
-[Obsidian Nord](https://insanum.com)
+- Theme: Adwaita
+- Author: <a href="https://github.com/birneee" target="_blank" rel="noopener noreferrer">@birneee</a>
 
 ## Preview
 
-[Open live preview](https://quartz-themes.github.io/obsidian-nord/)
+[Open live preview](https://quartz-themes.github.io/adwaita/)
 
 ## Usage
 
 ### GitHub Actions
 
 ```yaml
-- name: Fetch Quartz Theme
-  run: curl -s -S https://raw.githubusercontent.com/saberzero1/quartz-themes/master/action.sh | bash -s -- obsidian-nord
+env:
+  THEME_NAME: adwaita
 ```
 
-### Manual install
+```yaml
+- name: Fetch Quartz Theme
+  run: curl -s -S https://raw.githubusercontent.com/saberzero1/quartz-themes/master/action.sh | bash -s -- $THEME_NAME
+```
+
+### Automatic install into Quartz repository
 
 ```bash
 curl -s -S -o action.sh https://raw.githubusercontent.com/saberzero1/quartz-themes/master/action.sh
 
-./action.sh obsidian-nord
+./action.sh adwaita
 ```
 
-### Install script (Advanced)
+### Manual install
 
-After installing:
+Copy [\_index.scss](./_index.scss) into your Quartz repository's `quartz/styles/themes/` directory. (Create the `themes` directory if it does not exist.)
 
-```bash
-npm run theme obsidian-nord
+Then, add the following to your `quartz/styles/custom.scss` file after the `@use "base";` line:
+
+```scss
+@use "themes";
 ```
+
+> [!IMPORTANT] For dark-only or light-only themes, remember to remove `Component.Darkmode()` from your `quartz.config.ts` file.
+
+### Quartz Syncer
+
+> [!IMPORTANT]
+> This setup method is not yet available. It is currently being tested and will be released in the future.

@@ -36,10 +36,14 @@
 - The perf. Meas. $\sum U_{j}$ is regular
 
 > [!theorem] Optimality of 1/prmp/$\gamma$
-> For any Scheduling instance in above format where $\gamma$ is a **regular performance measure**, then there exists a **nondelay** schedule which is **optimal**
+> For any Scheduling instance in above format where $\gamma$ is a **regular performance measure**, then there exists a **non-delay** schedule which is **optimal**
 
-> [!definition] Nondelay Schedule
+> [!definition] Non-delay Schedule
 > - Has no unforced idleness
 > 	- forced idleness: no machine processes jobs at that time constant
 > 	- unforced idleness: otherwise
- 
+> 
+> A schedule on a single machine is **non-delay** if, for every time instant t, whenever there exists at least one job $j$ that
+> 1. Has been released by time t (i.e.$r_{j}\leq\:t$), 
+> 2. Is not yet completed at $t$,
+
